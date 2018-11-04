@@ -1,11 +1,11 @@
 <?php
 header('Content-type:text/html;charset=utf-8');
 session_start();  //启动会话
-
 if(isset($_POST['login']))
 {
     $name = trim($_POST['name']);
     $pass = trim($_POST['password']);
+    $_SESSION['name']=$name;
     $conn = mysqli_connect("localhost","root","","DT");
     if(!$conn)
     {
@@ -17,7 +17,8 @@ if(isset($_POST['login']))
     if(mysqli_num_rows($result)>0)
     {
         echo "登陆成功！";
-        header('refresh:3;url=index.html');
+
+        header('refresh:1;url=index.php');
     }
     else if(($username == '')||($password == ''))
     {
